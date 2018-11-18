@@ -1,2 +1,14 @@
 <h1>Home#show</h1>
 <p>Find me in app/views/home/show.html.erb</p>
+
+<a href="/">목록으로 가기</a>
+<hr>
+
+강의번호 : <%= @lecture.id %> <br>
+강의명 : <%= @lecture.name %> <br>
+전공 : <%= @lecture.major %> <br>
+담당교수 : <%= @lecture.professor %> <br>
+강의내용 : <%= @lecture.content %> <br>
+
+<a href="/home/edit/<%= @lecture.id %>">[수정]</a>
+<a href="/home/destroy/<%= @lecture.id %>">[삭제]</a>
