@@ -3,7 +3,7 @@
 <p>Find me in app/views/home/new.html.erb</p>
 
 <div class="container">
-    <form action="/home/create" method="POST">
+    <form action="/home/create" method="POST" enctype='multipart/form-data'>
       <div class="form-group">
         <label for="InputLectureName">강의명</label>
         <input type="text" name="name" class="form-control" id="InputLectureName" placeholder="강의명을 입력하세요">
@@ -20,6 +20,9 @@
         <label for="InputLectureContent">강의내용</label>
         <textarea class="form-control" name="content" id="InputLectureContent" rows="7"></textarea>
       </div>
+      
+      <input type="file" name="file">
+      
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

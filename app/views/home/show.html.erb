@@ -9,6 +9,64 @@
 전공 : <%= @lecture.major %> <br>
 담당교수 : <%= @lecture.professor %> <br>
 강의내용 : <%= @lecture.content %> <br>
+<!--사진 : <%= @lecture.image.url %><br>-->
+사진 : <%= image_tag("#{@lecture.image.url}", class:"") %><br>
 
 <a href="/home/edit/<%= @lecture.id %>">[수정]</a>
 <a href="/home/destroy/<%= @lecture.id %>">[삭제]</a>
+
+<br><hr>
+
+<div class="container">
+    댓글 모음
+    <br><hr>
+    <% @lecture.replies.each do |reply|%>
+        댓글 번호 : <%= reply.id%>
+        댓글 내용 : <%= reply.content %>
+        <a href="/reply/destroy/<%= reply.id%>">delete</a><br>
+    <%end%>
+    <div class="section"></div>
+</div>
+
+
+
+
+<div class="container">
+     <!--<form action="/reply/create" method="POST">-->
+      <div class="form-group">
+        <input type="hidden" name="l_id" value="<%=@lecture.id%>" class="form-control" id="InputLectureID" placeholder="담당교수를 입력하세요">
+      </div>
+      <div class="form-group">
+        <label for="InputLectureContent">강의내용</label>
+        <textarea class="form-control" name="content" id="InputReplyContent" rows="7"></textarea>
+      </div>
+      <button type="submit" id="btn_reply_submit" class="btn btn-primary">Submit</button>
+    <!--</form>-->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#btn_reply_submit").click(function() {
+            var lecture_id = $("#InputLectureID").val();
+            var reply_content = $("#InputReplyContent").val();
+            alert("hi")
+            
+            $.ajax({
+              method: "POST",
+              url: "/reply/create",
+              data: { l_id: lecture_id, content: reply_content },
+              error : function(error) {
+                alert("Error!");
+              },
+             success : function(data) {
+                 $('#InputReplyContent').val('');
+                 $( ".section" ).append( "<p>댓글내용:"+reply_content+"</p>" );
+              }
+
+            });
+        });
+    });
+    <!--클릭했을 때 할 기능을 작성-->
+<!--모두다 로딩이 되면 js를 시작하겠다.-->
+
+</script>

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
 
   def create
-    new_lecture = Lecture.new(name: params[:name], major: params[:major], professor: params[:professor], content: params[:content])
+    new_lecture = Lecture.new(name: params[:name], major: params[:major], professor: params[:professor], content: params[:content], image: params[:file])
     new_lecture.save
     
     redirect_to '/'

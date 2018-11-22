@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  post 'reply/create'
+
+  get 'reply/destroy/:reply_id' => 'reply#destroy' #여기서 :블라블라는 해쉬 키 값을 뜻하고 url에 입력하는 숫자가 벨류가 됨
+
   root 'home#index'
 
   get 'home/new'
